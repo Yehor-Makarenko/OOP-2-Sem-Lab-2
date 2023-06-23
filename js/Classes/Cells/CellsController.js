@@ -1,16 +1,17 @@
-import Cell from "./Cell";
-import StatesFactory from "./StatesFactory";
+import Cell from "./Cell.js";
+import StatesFactory from "./StatesFactory.js";
 
 export default class CellsController {  
   _cells = [];
   static _instance;
 
   static getInstance() {
-    if(this._instance) {
-      return this._instance;
-    }
-    this._instance = new CellsController();    
+    if (!this._instance) {
+      this._instance = new CellsController();         
+    }    
+    return this._instance;
   }
+
   get cells() {
     return this._cells;
   }
@@ -43,7 +44,11 @@ export default class CellsController {
 
   update() {
     for (let cell of this._cells) {
-      cell.update();
+      cell.setNewState();
+    }
+
+    for (let cell of this._cells) {
+      cell.updateState();
     }
   }
 }

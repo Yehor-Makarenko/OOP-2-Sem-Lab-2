@@ -1,11 +1,11 @@
-import StatesFactory from "./StatesFactory";
+import StatesFactory from "./StatesFactory.js";
 
 export default class Cell {
   _neighbours = [];
   constructor(x, y, stateName) {
     this._x = x;
     this._y = y;
-    this._state = StatesFactory.getState(stateName);
+    this._currState = StatesFactory.getState(stateName);
   }
 
   get x() {
@@ -17,12 +17,16 @@ export default class Cell {
   }
 
   get state() {
-    return this._state;
+    return this._currState;
   }
 
-  update() {
-    this._state = this._state.getNewState(this, this._neighbours);    
+  setNewState() {
+    this._newState = this._currState.getNewState(this, this._neighbours);    
   }    
+
+  updateState() {
+    this._currState = this._newState;
+  }
 
   addNeighbour(cell) {
     this._neighbours.push(cell);
