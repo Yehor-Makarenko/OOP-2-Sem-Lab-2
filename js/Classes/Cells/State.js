@@ -1,4 +1,4 @@
-import CompositeRule from "../Rules/CompositeRule";
+import CompositeRule from "../Rules/CompositeRule.js";
 
 export default class State {
   constructor(name, neighborhood) {
@@ -20,7 +20,7 @@ export default class State {
   }
 
   getNewState(cell, neighbours) {
-    let newState = this._rules.getNewState(neighbours);
+    let newState = this._compositeRule.getNewState(neighbours);
     if (newState === null) {
       return cell.state;
     }
