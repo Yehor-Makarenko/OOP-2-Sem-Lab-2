@@ -1,6 +1,6 @@
 export default class GameController {
-  constructor(cells, cellTypes) {
+  constructor(cells, States) {
     this.cells = cells;
-    this.cellTypes = cellTypes;
+    this.States = States;
   }
 }

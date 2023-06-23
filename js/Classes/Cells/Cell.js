@@ -1,19 +1,27 @@
-import CellsFactory from "./CellsFactory";
+import StatesFactory from "./StatesFactory";
 
 export default class Cell {
   _neighbours = [];
-  constructor(x, y, typeName) {
-    this.x = x;
-    this.y = y;
-    this._type = CellsFactory.getCellType(typeName);
+  constructor(x, y, stateName) {
+    this._x = x;
+    this._y = y;
+    this._state = StatesFactory.getState(stateName);
   }
 
-  get type() {
-    return this._type;
+  get x() {
+    return this._x;
+  }
+
+  get y() {
+    return this._y;
+  }
+
+  get state() {
+    return this._state;
   }
 
   update() {
-    this._type = this._type.update(this._neighbours);
+    this._state = this._state.getNewState(this, this._neighbours);    
   }    
 
   addNeighbour(cell) {

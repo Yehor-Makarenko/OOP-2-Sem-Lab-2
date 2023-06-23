@@ -1,4 +1,4 @@
-export default class NeumannNeighborhood {
+export default class MooreNeighborhood {
   constructor(range = 1, fieldSize) {
     this._range = range;
     this._fieldSize = fieldSize;    
