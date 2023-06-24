@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "exports-loader": "^4.0.0",
     "webpack": "^5.88.0"
   }
 }
