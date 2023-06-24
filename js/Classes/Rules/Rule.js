@@ -8,31 +8,24 @@ export default class Rule {
     this._cellsNumber = cellsNumber
   }
 
-  _check(neighbours) {
-    let stateCounter = 0;
-    for (let cell of neighbours) {
-      if (cell.state === this._ruleState) {
-        stateCounter++;
-      }
-    }
-
+  _check(neighboursCounter) {
     if (this._operator === "=") {
-      return stateCounter === this._cellsNumber;
+      return neighboursCounter.get(this._ruleState) === this._cellsNumber;
     } else if (this._operator === ">") {
-      return stateCounter > this._cellsNumber;
+      return neighboursCounter.get(this._ruleState) > this._cellsNumber;
     } else if (this._operator === ">=") {
-      return stateCounter >= this._cellsNumber;
+      return neighboursCounter.get(this._ruleState) >= this._cellsNumber;
     } else if (this._operator === "<") {
-      return stateCounter < this._cellsNumber;
+      return neighboursCounter.get(this._ruleState) < this._cellsNumber;
     } else if (this._operator === "<=") {
-      return stateCounter <= this._cellsNumber;
+      return neighboursCounter.get(this._ruleState) <= this._cellsNumber;
     }    
 
     return false;
   }
 
-  getNewState(neighbours) {
-    if (this._check(neighbours)) {
+  getNewState(neighboursCounter) {
+    if (this._check(neighboursCounter)) {
       return this._newState;
     }
 

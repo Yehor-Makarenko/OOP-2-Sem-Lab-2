@@ -19,8 +19,8 @@ export default class State {
     this._compositeRule.addRule(newStateName, ruleStateName, operator, cellsNumber);
   }
 
-  getNewState(cell, neighbours) {
-    let newState = this._compositeRule.getNewState(neighbours);
+  getNewState(cell, neighboursCounter) {
+    let newState = this._compositeRule.getNewState(neighboursCounter);
     if (newState === null) {
       return cell.state;
     }

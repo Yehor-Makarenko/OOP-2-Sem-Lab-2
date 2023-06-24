@@ -1,8 +1,7 @@
 import Cell from "./Cell.js";
 import StatesFactory from "./StatesFactory.js";
 
-export default class CellsController {  
-  _cells = [];
+export default class CellsController {    
   static _instance;
 
   static getInstance() {
@@ -10,6 +9,10 @@ export default class CellsController {
       this._instance = new CellsController();         
     }    
     return this._instance;
+  }
+
+  constructor() {
+    this._cells = [];
   }
 
   get cells() {
