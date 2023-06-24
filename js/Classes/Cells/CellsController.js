@@ -30,15 +30,8 @@ export default class CellsController {
   }
 
   setNeighbours() {
-    for (let cell1 of this._cells) {
-      const neighborhood = cell1.state.neighborhood;
-
-      for (let cell2 of this._cells) {
-        if (!neighborhood.isNeighbours(cell1, cell2) || cell1 === cell2) {
-          continue;
-        }
-        cell1.addNeighbour(cell2);
-      }    
+    for (let cell of this._cells) {
+      cell.setNeighbours(this._cells);
     }
   }
 

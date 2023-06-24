@@ -4,9 +4,27 @@ export default class NeumannNeighborhood {
     this._fieldSize = fieldSize;
   }
 
-  isNeighbours(cell1, cell2) {
-    let d1 = Math.abs(Math.abs(cell1.x - cell2.x) - this._fieldSize / 2);
-    let d2 = Math.abs(Math.abs(cell1.y - cell2.y) - this._fieldSize / 2);
-    return this._fieldSize - d1 - d2 <= this._range;
+  getNeighbours(cell, allCells) {
+    const neighbours = [];
+    const multipliers = [-1, 1];
+    let xTor, yTor;    
+
+    for (let i = 0; i <= this._range; i++) {
+      for (let j = 0; j <= i; j++) {
+        if (i === 0 && j === 0) {
+          continue;
+        }
+
+        for (let m1 of multipliers) {
+          for (let m2 of multipliers) {
+            xTor = (cell.x + j * m1 + this._fieldSize) % this._fieldSize;
+            yTor = (cell.y + i * m2 + this._fieldSize) % this._fieldSize;            
+            neighbours.push(allCells[yTor * this._fieldSize + xTor]);
+          }
+        }
+      }
+    }
+
+    return neighbours;
   }
 }
