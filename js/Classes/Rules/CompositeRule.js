@@ -9,10 +9,10 @@ export default class CompositeRule {
     this._rules.push(new Rule(newStateName, ruleStateName, operator, cellsNumber));
   }
 
-  getNewState(neighbours) {
+  getNewState(neighboursCounter) {
     let newState;
     for (let rule of this._rules) {
-      newState = rule.getNewState(neighbours);
+      newState = rule.getNewState(neighboursCounter);
 
       if (newState !== null) {
         return newState;
