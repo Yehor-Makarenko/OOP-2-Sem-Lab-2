@@ -10,8 +10,8 @@ const offScreenCanvas = document.createElement("canvas");
 offScreenCanvas.width = canvas.width;
 offScreenCanvas.height = canvas.height;
 const offScreenContext = offScreenCanvas.getContext("2d");
-const cellSize = 1;
-const fieldSize = 1000;
+const cellSize = 5;
+const fieldSize = 2;
 const cc = CellsController.getInstance();
 
 cc.addState(0, new NeumannNeighborhood(2, fieldSize));
@@ -24,17 +24,19 @@ cc.addRule(2, 0, 0, ">=", 4);
 // cc.addRule(1, 0, 1, "=", 1);
 // cc.addRule(1, 0, 1, ">", 3);
 // cc.addRule(0, 1, 1, "=", 1);
+// cc.addRule(0, 1, 1, ">=", 3);
+// cc.addRule(1, 0, 1, "<", 5);
 for (let i = 0; i < fieldSize; i++) {
   for (let j = 0; j < fieldSize; j++) {
-    cc.addCell(j, i, Math.floor(Math.random() * 3));
+    cc.addCell(j, i, Math.floor(Math.random() * 3)); 
   }
 }
+
 cc.setNeighbours();
 
-for (let i = 0; i < 100; i++) {
-  cc.update();
-  console.log("Yep!");
-}
+let counter = 0;
+
+cc.update();
 
 // canvas.before(gridCanvas);
 // gridCanvas.style.position = "absolute";

@@ -39,12 +39,23 @@ export default class CellsController {
   }
 
   update() {
-    for (let cell of this._cells) {
-      cell.setNewState();
+    // for (let cell of this._cells) {
+    //   cell.setNewState();
+    // }
+
+    // for (let cell of this._cells) {
+    //   cell.updateState();
+    // }
+
+    if (!this._parallel) {
+      this._parallel = new Parallel(this._cells, { env: { Cell: Cell } });
     }
 
-    for (let cell of this._cells) {
+    this._parallel.map(cell => {
+      cell.constructor = Cell;      
+      cell.setNewState();
       cell.updateState();
-    }
+      return 1;
+    }).then(results => console.log([results]));
   }
 }
