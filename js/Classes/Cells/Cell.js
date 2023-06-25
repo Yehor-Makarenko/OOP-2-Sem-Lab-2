@@ -1,7 +1,7 @@
 import StatesFactory from "./StatesFactory.js";
 
 export default class Cell {
-  constructor(x, y, stateName) {
+  constructor(x, y, stateName) {       
     this._x = x;
     this._y = y;
     this._currState = StatesFactory.getState(stateName);

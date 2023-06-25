@@ -39,28 +39,25 @@ export default class CellsController {
   }
 
   update() {
-    // for (let cell of this._cells) {
-    //   cell.setNewState();
-    // }
+    for (let cell of this._cells) {
+      cell.setNewState();
+    }
 
-    // for (let cell of this._cells) {
-    //   cell.updateState();
-    // }
+    for (let cell of this._cells) {
+      cell.updateState();
+    }
 
     if (!this._parallel) {      
       this._parallel = new Parallel(this._cells);
     }
 
-    this._parallel      
+    this._parallel            
     .map(cell => {
-      console.log(cell);
-      importCell();
-      // cell.constructor = Cell;      
-      // cell.setNewState();
-      // cell.updateState();
-      console.log(Cell);
+      importCellClass();
+      cell.setNewState();
+      // cell.updateState();      
       return 1;
-    }, { CellClass: Cell })
+    })
     .then(console.log, console.log);
   }
 }
