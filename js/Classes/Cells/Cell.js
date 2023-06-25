@@ -39,3 +39,5 @@ export default class Cell {
     this._neighbours = this._currState.neighborhood.getNeighbours(this, cells);
   }
 }
+
+console.log(Cell.prototype.setNewState)
