@@ -11,7 +11,7 @@ offScreenCanvas.width = canvas.width;
 offScreenCanvas.height = canvas.height;
 const offScreenContext = offScreenCanvas.getContext("2d");
 const cellSize = 5;
-const fieldSize = 2;
+const fieldSize = 100;
 const cc = CellsController.getInstance();
 
 cc.addState(0, new NeumannNeighborhood(2, fieldSize));
@@ -34,9 +34,15 @@ for (let i = 0; i < fieldSize; i++) {
 
 cc.setNeighbours();
 
+cc.update();
 let counter = 0;
 
-cc.update();
+for (let i = 0; i < 100; i++) {
+  for (let cell of cc._cells) {
+    cell._currState = cell._newState;
+  }
+  console.log("Yep!");
+}
 
 // canvas.before(gridCanvas);
 // gridCanvas.style.position = "absolute";

@@ -39,20 +39,21 @@ export default class CellsController {
   }
 
   update() {
+    for (let cell of this._cells) {
+      cell.setNewState();
+    }
+    for (let cell of this._cells) {
+      cell.updateState();
+    }
+
     if (!this._parallel) {      
       this._parallel = new Parallel(this._cells);
     }
 
-    this._parallel      
-    .require(function importCellClass() {
-      importScripts("http://127.0.0.1:5500/js/Classes/Cells/Cell.js");
-    })      
+    this._parallel         
     .map(cell => {
-      importCellClass();
-      cell.setNewState();
-      // cell.updateState();      
-      return 1;
+      return 1;                
     })
-    .then(console.log, console.log);
+    .then(() => console.log("Yep!"), console.log);
   }
 }
