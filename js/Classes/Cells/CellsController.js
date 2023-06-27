@@ -44,16 +44,7 @@ export default class CellsController {
     }
     for (let cell of this._cells) {
       cell.updateState();
-    }
-
-    if (!this._parallel) {      
-      this._parallel = new Parallel(this._cells);
-    }
-
-    this._parallel         
-    .map(cell => {
-      return 1;                
-    })
-    .then(() => console.log("Yep!"), console.log);
+    }    
+    
   }
 }

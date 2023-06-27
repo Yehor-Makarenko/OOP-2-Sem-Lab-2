@@ -1,4 +1,5 @@
 import CellsController from "./Classes/Cells/CellsController.js";
+import StatesFactory from "./Classes/Cells/StatesFactory.js";
 import MooreNeighborhood from "./Classes/Neighborhoods/MooreNeighborhood.js";
 import NeumannNeighborhood from "./Classes/Neighborhoods/NeumannNeighborhood.js";
 
@@ -11,7 +12,7 @@ offScreenCanvas.width = canvas.width;
 offScreenCanvas.height = canvas.height;
 const offScreenContext = offScreenCanvas.getContext("2d");
 const cellSize = 5;
-const fieldSize = 100;
+const fieldSize = 10;
 const cc = CellsController.getInstance();
 
 cc.addState(0, new NeumannNeighborhood(2, fieldSize));
@@ -34,14 +35,25 @@ for (let i = 0; i < fieldSize; i++) {
 
 cc.setNeighbours();
 
-cc.update();
 let counter = 0;
 
-for (let i = 0; i < 100; i++) {
-  for (let cell of cc._cells) {
-    cell._currState = cell._newState;
+for (let cell of cc.cells) {
+  const w = new Worker("../js/worker.js", { type: "module" });
+  w.postMessage({ cell, states: StatesFactory.states });
+  w.onmessage = event => {
+    const cell = event.data;
+    cc.cells[cell._y * fieldSize + cell._x]._newState = cell._newState;
+    counter++;
+    if (counter == cc.cells.length) {
+      for (let cell of cc.cells) {
+        cell._currState = cell._newState;
+      }
+
+      console.log("ready");
+    }
+
+    w.terminate();
   }
-  console.log("Yep!");
 }
 
 // canvas.before(gridCanvas);

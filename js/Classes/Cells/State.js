@@ -1,9 +1,10 @@
 import CompositeRule from "../Rules/CompositeRule.js";
 
 export default class State {
-  constructor(name, neighborhood) {
+  constructor(name, neighborhood, color) {
     this._name = name;
     this._neighborhood = neighborhood;
+    this._color = color;
     this._compositeRule = new CompositeRule();
   }
 
@@ -13,6 +14,10 @@ export default class State {
 
   get neighborhood() {
     return this._neighborhood;
+  }
+
+  get color() {
+    return this._color;
   }
 
   addRule(newStateName, ruleStateName, operator, cellsNumber) {
