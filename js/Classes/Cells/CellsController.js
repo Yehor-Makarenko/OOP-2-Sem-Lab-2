@@ -1,5 +1,6 @@
 import Cell from "./Cell.js";
 import StatesFactory from "./StatesFactory.js";
+import WebglCellAdapter from "./WebglCellAdapter.js";
 
 export default class CellsController {    
   static _instance;
@@ -13,14 +14,19 @@ export default class CellsController {
 
   constructor() {
     this._cells = [];
+    this._webglCells = [];
   }
 
   get cells() {
     return this._cells;
   }
 
-  addState(stateName, neighborhood) {
-    StatesFactory.addState(stateName, neighborhood);
+  get webglCells() {
+    return this._webglCells;
+  }
+
+  addState(stateName, neighborhood, color) {
+    StatesFactory.addState(stateName, neighborhood, color);
   }
 
   addRule(stateName, newStateName, ruleStateName, operator, cellsNumber) {
@@ -35,6 +41,12 @@ export default class CellsController {
   setNeighbours() {
     for (let cell of this._cells) {
       cell.setNeighbours(this._cells);
+    }
+  }
+
+  adaptWebglCells(fieldSizeX, fieldSizeY) {
+    for (let cell of this._cells) {
+      this._webglCells.push(new WebglCellAdapter(cell, fieldSizeX, fieldSizeY));
     }
   }
 
