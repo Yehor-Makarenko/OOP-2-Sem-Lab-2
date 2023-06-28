@@ -55,8 +55,9 @@ export default class CellsController {
       cell.setNewState();
     }
 
-    for (let cell of this._cells) {
-      cell.updateState();
+    for (let i = 0; i < this._cells.length; i++) {
+      this._cells[i].updateState();
+      this._webglCells[i].state = this._cells[i].state;
     }
   }
 }
