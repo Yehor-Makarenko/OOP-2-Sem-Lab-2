@@ -1,7 +1,7 @@
-import MooreNeighborhood from "./MooreNeighborhood";
+import MooreNeighborhood from "./MooreNeighborhood.js";
 
 export default class MooreNeighborhoodFactory {
-  createNeighborhood(range, fieldSize) {
-    return new MooreNeighborhood(range, fieldSize);
+  createNeighborhood(range, fieldSizeX, fieldSizeY) {
+    return new MooreNeighborhood(range, fieldSizeX, fieldSizeY);
   }
 }

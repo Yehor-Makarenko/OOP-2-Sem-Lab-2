@@ -1,8 +1,32 @@
 * {
   margin: 0;
   padding: 0;  
+  box-sizing: border-box;
 }
 
-canvas { 
-  
+canvas {
+  margin: 0;
+  padding: 0;
+}
+
+.forms {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+}
+
+.forms form fieldset {
+  padding: 15px;
+}
+
+.forms form input, .forms form select {  
+  margin: 8px 0;
+}
+
+.forms form button {
+  padding: 4px 10px;
+  margin-top: 10px;
+  font-size: 14px;
 }

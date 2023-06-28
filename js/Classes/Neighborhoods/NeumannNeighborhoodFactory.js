@@ -1,7 +1,7 @@
-import NeumannNeighborhood from "./NeumannNeighborhood";
+import NeumannNeighborhood from "./NeumannNeighborhood.js";
 
 export default class NeumannNeighborhoodFactory {
-  createNeighborhood(range, fieldSize) {
-    return new NeumannNeighborhood(range, fieldSize);
+  createNeighborhood(range, fieldSizeX, fieldSizeY) {
+    return new NeumannNeighborhood(range, fieldSizeX, fieldSizeY);
   }
 }
