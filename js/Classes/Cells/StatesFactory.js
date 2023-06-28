@@ -10,8 +10,8 @@ export default class StatesFactory {
     const state = this._states.find(state => state.name === stateName);    
     return state;
   }
-  static addState(stateName, neighborhood) {
-    const state = new State(stateName, neighborhood);
+  static addState(stateName, neighborhood, color) {
+    const state = new State(stateName, neighborhood, color);
     this._states.push(state);
   }
 }

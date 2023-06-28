@@ -41,7 +41,7 @@ export default class Options {
 
   set fieldSizeX(size) {
     this._fieldSizeX = size;
-    this._cellSize = Math.floor(widht / this._fieldSizeX);
+    this._cellSize = Math.floor(this._screenWidth / this._fieldSizeX);
     this._screenHeight = this._cellSize * this._fieldSizeY; 
   }
 
