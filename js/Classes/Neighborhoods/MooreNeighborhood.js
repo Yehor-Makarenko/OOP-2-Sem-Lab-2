@@ -1,7 +1,13 @@
 export default class MooreNeighborhood {
-  constructor(range = 1, fieldSize) {
+  constructor(range = 1, fieldSizeX, fieldSizeY) {
     this._range = range;
-    this._fieldSize = fieldSize;    
+    this._fieldSizeX = fieldSizeX;    
+    this._fieldSizeY = fieldSizeY;    
+  }
+
+  setFieldSize(xSize, ySize) {
+    this._fieldSizeX = xSize;    
+    this._fieldSizeY = ySize;    
   }
 
   getNeighbours(cell, allCells) {
@@ -14,9 +20,9 @@ export default class MooreNeighborhood {
           continue;
         }
 
-        xTor = (cell.x + j + this._fieldSize) % this._fieldSize;
-        yTor = (cell.y + i + this._fieldSize) % this._fieldSize;  
-        neighbours.push(allCells[yTor * this._fieldSize + xTor]);
+        xTor = (cell.x + j + this._fieldSizeX) % this._fieldSizeX;
+        yTor = (cell.y + i + this._fieldSizeY) % this._fieldSizeY;  
+        neighbours.push(allCells[yTor * this._fieldSizeX + xTor]);
       }
     }
 
